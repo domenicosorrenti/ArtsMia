@@ -29,7 +29,7 @@ public class Model {
 		grafo = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
 		
 		//aggiungo i vertici
-		dao.listObjects(idMap);
+		dao.listObjects(idMap);//qui riempio la map che passo in input
 		Graphs.addAllVertices(this.grafo, idMap.values());
 		
 		//aggiungo gli archi

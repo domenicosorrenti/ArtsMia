@@ -71,9 +71,10 @@ public class ArtsmiaDAO {
 		String sql = "SELECT e1.object_id as e1, e2.object_id as e2, COUNT(*) as peso "
 				+ "FROM exhibition_objects e1, exhibition_objects e2 "
 				+ "WHERE e1.exhibition_id = e2.exhibition_id "
-				+ "AND e1.object_id > e2.object_id "
-				+ "GROUP BY e1.object_id, e2.object_id";
-		Connection conn = DBConnect.getConnection();
+				+ "AND e1.object_id > e2.object_id " // interessante aver messo questo > al posto del "<>" (ricordo che equivale a 
+				+ "GROUP BY e1.object_id, e2.object_id"; // != in SQL) per poter evitare i duali con solo gli id degli oggetti 
+		Connection conn = DBConnect.getConnection(); // invertiti (fossimo stati in un grafo orientato invece avrebbe senso l'ordine
+		                                            // con cui ho i miei id percapire l'orientamento)
 		List<Adiacenza> result = new ArrayList<Adiacenza>();
 		try {
 			PreparedStatement st = conn.prepareStatement(sql);
